@@ -1,24 +1,57 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| email           | string | null: false |
+| password        | string | null: false |
+| nickname        | string | null: false |
+| first_name      | string | null: false |
+| last_name       | string | null: false |
+| first_name_kana | string | null: false |
+| last_name_kana  | string | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :orders
 
-* Ruby version
+## itemsテーブル(imageは記載なし)
 
-* System dependencies
+| Column       | Type       | Options                       |
+| ------------ | ---------- | ----------------------------- |
+| title        | text       | null: false                   |
+| introduction | text       | null: false                   |
+| price        | integer    | null: false                   |
+| user         | references | null: false foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :order
 
-* Database creation
+## ordersテーブル
 
-* Database initialization
+| Column | Type       | Options                       |
+| ------ | ---------- | ----------------------------- |
+| user   | references | null: false foreign_key: true |
+| item   | references | null: false foreign_key: true |
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- belongs_to :order
+- has_one :order_address
+ 
+## order_addressesテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column       | Type       | Options                       |
+| ------------ | ---------- | ----------------------------- |
+| post_number  | integer    | null: false                   |
+| home_town    | string     | null: false                   |
+| home_address | string     | null: false                   |
+| building     | string     |                               |
+| phone_number | integer    | null: false                   |
+| order        | references | null: false foreign_key: true |
 
-* Deployment instructions
+### Association
+- belongs_to :order
 
-* ...
+
+
