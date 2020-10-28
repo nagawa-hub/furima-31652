@@ -12,6 +12,9 @@ class User < ApplicationRecord
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: '全角文字を使用してください' } do
     validates :first_name
     validates :last_name
+  end
+
+  with_options presence: true, format: { with: /\A[ァ-ン]+\z/, message: '全角カナを使用してください' } do
     validates :first_kana
     validates :last_kana
   end

@@ -55,9 +55,16 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
-      it 'パスワードが半角英数字混合(6文字以上)でないと登録できない' do
+      it 'パスワードが半角数字だけ(6文字以上)では登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      end
+
+      it 'パスワードが半角英字だけ(6文字以上)では登録できない' do
+        @user.password = 'abcdef'
+        @user.password_confirmation = 'abcdef'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
@@ -112,15 +119,15 @@ RSpec.describe User, type: :model do
       end
 
       it 'last_name_kanaが全角(カナ)でないと登録できない' do
-        @user.last_kana = '123'
+        @user.last_kana = '田中'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last kana 全角文字を使用してください')
+        expect(@user.errors.full_messages).to include('Last kana 全角カナを使用してください')
       end
 
       it 'first_name_kanaが全角(カナ)でないと登録できない' do
-        @user.first_kana = '123'
+        @user.first_kana = '田中'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First kana 全角文字を使用してください')
+        expect(@user.errors.full_messages).to include('First kana 全角カナを使用してください')
       end
 
       it 'birthdayが空だと登録できない' do
