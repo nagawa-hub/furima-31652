@@ -8,7 +8,6 @@ function calc (){
     const itemProfit = document.getElementById("profit");
     itemProfit.innerHTML = inputValue - itemTax
   });
-
 };
 
 window.addEventListener('load',calc)
