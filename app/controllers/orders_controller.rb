@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @item_order = ItemOrder.new
-    if Order.where(item_id: @item.id).exists?
+    if Order.where(item_id: @item.id).exists? || current_user.id == @item.user_id
       @items = Item.includes(:user).order('created_at DESC')
       render template: 'items/index'
     end
