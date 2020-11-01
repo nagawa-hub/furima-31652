@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item_order do
-    token { "tok_abcdefghijk00000000000000000" }
+    token { 'tok_abcdefghijk00000000000000000' }
     post_number { '123-1234' }
     home_prefecture_id { '2' }
     home_town { '大阪市' }
