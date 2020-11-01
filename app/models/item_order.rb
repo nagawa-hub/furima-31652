@@ -1,7 +1,7 @@
 class ItemOrder
 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_number, :home_prefecture_id, :home_town, :home_address, :building, :phone_number,:order_id
+  attr_accessor :user_id, :item_id, :post_number, :home_prefecture_id, :home_town, :home_address, :building, :phone_number,:order_id, :price, :token
 
   with_options presence: true do
     validates :post_number
@@ -9,9 +9,12 @@ class ItemOrder
     validates :home_town
     validates :home_address
     validates :phone_number
+    validates :token
   end
 
   validates :home_prefecture_id, numericality: { other_than: 1 }
+  validates :post_number, format: { with: /\A\d{3}[-]\d{4}\z/ }
+  validates :phone_number, format: { with: /\A\d{10,11}\z/ }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
