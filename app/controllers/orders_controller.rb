@@ -1,8 +1,13 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @item = Item.find(params[:item_id])
     @item_order = ItemOrder.new
+    if Order.where(item_id: @item.id).exists?
+        @items = Item.includes(:user).order('created_at DESC')
+        render template: "items/index"
+    end
   end
 
   def create
