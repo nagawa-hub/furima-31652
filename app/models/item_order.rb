@@ -1,6 +1,6 @@
 class ItemOrder
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_number, :home_prefecture_id, :home_town, :home_address, :building, :phone_number, :order_id, :price, :token
+  attr_accessor :user_id, :item_id, :post_number, :home_prefecture_id, :home_town, :home_address, :building, :phone_number, :price, :token
 
   with_options presence: true do
     validates :post_number, format: { with: /\A\d{3}-\d{4}\z/ }
