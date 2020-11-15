@@ -1,4 +1,25 @@
-## usersテーブル
+# 概要
+
+商品を出品したり購入ができるフリマアプリです。
+herokuの仕様上、当日出品されたアイテムの画像しか表示されません。
+
+## フリマアプリのURL
+https://furima-31652.herokuapp.com/
+
+・Basic認証のID：furima
+・パスワード ：31652
+
+・出品者用のメールアドレス：sell@sample
+パスワード ：sample1
+
+・購入者用のメールアドレス：buy@sample
+パスワード ：sample1
+
+・購入用カードの番号：4242424242424242
+期限：現在より未来
+セキュリティコード：123
+
+### usersテーブル
 
 | Column             | Type    | Options                 |
 | ------------------ | ------- | ----------------------- |
@@ -11,11 +32,11 @@
 | last_kana          | string  | null: false             |
 | birthday           | date    | null: false             |
 
-### Association
+#### Association
 - has_many :items
 - has_many :orders
 
-## itemsテーブル(imageは記載なし)
+### itemsテーブル(imageは記載なし)
 
 | Column                 | Type       | Options                       |
 | ---------------------  | ---------- | ----------------------------- |
@@ -29,23 +50,23 @@
 | price                  | integer    | null: false                   |
 | user                   | references | null: false foreign_key: true |
 
-### Association
+#### Association
 - belongs_to :user
 - has_one :order
 
-## ordersテーブル
+### ordersテーブル
 
 | Column | Type       | Options                       |
 | ------ | ---------- | ----------------------------- |
 | user   | references | null: false foreign_key: true |
 | item   | references | null: false foreign_key: true |
 
-### Association
+#### Association
 - belongs_to :user
 - belongs_to :order
 - has_one :order_address
  
-## order_addressesテーブル
+### order_addressesテーブル
 
 | Column             | Type       | Options                       |
 | ------------------ | ---------- | ----------------------------- |
@@ -57,7 +78,7 @@
 | phone_number       | string     | null: false                   |
 | order              | references | null: false foreign_key: true |
 
-### Association
+#### Association
 - belongs_to :order
 
 
