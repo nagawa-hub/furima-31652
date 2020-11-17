@@ -6,8 +6,8 @@ herokuの仕様上、当日出品されたアイテムの画像しか表示さ�
 ## フリマアプリのURL
 https://furima-31652.herokuapp.com/
 
-・Basic認証のID：furima
-・パスワード ：31652
+<!-- ・Basic認証のID：furima
+・パスワード ：31652 -->
 
 ・出品者用のメールアドレス：sell@sample
 パスワード ：sample1
