@@ -13,6 +13,13 @@ class ItemOrder
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    OrderAddress.create(post_number: post_number, home_prefecture_id: home_prefecture_id, home_town: home_town, home_address: home_address, building: building, phone_number: phone_number, order_id: order.id)
+    OrderAddress.create(
+      post_number: post_number, 
+      home_prefecture_id: home_prefecture_id, 
+      home_town: home_town, 
+      home_address: home_address, 
+      building: building, 
+      phone_number: phone_number, 
+      order_id: order.id)
   end
 end
